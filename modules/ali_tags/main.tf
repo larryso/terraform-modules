@@ -26,3 +26,4 @@ locals{
     #     contains(keys(local.clean_module_tags), "TFModulesVersion") ? {"TFModulesVersion" = local.clean_module_tags.TFModulesVersion} : {}
     # )
     resulting_tags = local.final_tags
+}
