@@ -1,14 +1,15 @@
 locals{
     clean_module_tags = { for k, v in var.module_tags : k=>v if v != null}
 
-    caller_tf_module_name = lookup(local.clean_module_tags, "TFComponent", "")
-    tag_filter = local.caller_tf_module_name == "ali_kms_secrets" || local.caller_tf_module_name == ""
+    # caller_tf_module_name = lookup(local.clean_module_tags, "TFComponent", "")
+    # tag_filter = local.caller_tf_module_name == "ali_kms_secrets" || local.caller_tf_module_name == ""
     # removed "PipelineTags" and "ExtraTags"
-    main_tags = local.tag_filter ? {
-        for k,v in var.tags : k=>v if contains(["APMID", "EnvironmentGroup", "RresourceGroup"], k)
-    }:{
-        for k,v in var.tags : k=>v if !contains(["PipelineTags", "ExtraTags"], k)
-    }
+    # main_tags = local.tag_filter ? {
+    #     for k,v in var.tags : k=>v if contains(["APMID", "EnvironmentGroup", "RresourceGroup"], k)
+    # }:{
+    #     for k,v in var.tags : k=>v if !contains(["PipelineTags", "ExtraTags"], k)
+    # }
+    main_tags = var.tags
     # removed null value
     clean_tags = {for k,v in local.main_tags: k=>v if v != null}
 
