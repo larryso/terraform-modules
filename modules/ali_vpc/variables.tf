@@ -12,7 +12,7 @@ variable "name" {
 
 variable "vpc_desciption" {
   type = string
-  default = ""
+  default = null
   description = "VPC description (information parameter)"
 }
 
