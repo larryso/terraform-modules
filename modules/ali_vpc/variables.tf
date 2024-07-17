@@ -35,11 +35,11 @@ variable "cen" {
 }
 
 variable "cross_account_cen" {
-  type = object{
+  type = object ({
     enabled = false
     instance_id = string
     cen_owner_account_id = string
-  }
+  })
   default = {
     enabled = false
     instance_id = ""
