@@ -76,7 +76,7 @@ variable "utility_vswitch" {
   type = object({
     enabled = bool
     subnet = string
-    zone string 
+    zone = string 
   })
   default = {
     enabled = false
