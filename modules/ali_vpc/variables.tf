@@ -36,7 +36,7 @@ variable "cen" {
 
 variable "cross_account_cen" {
   type = object ({
-    enabled = false
+    enabled = bool
     instance_id = string
     cen_owner_account_id = string
   })
