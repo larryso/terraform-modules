@@ -3,8 +3,8 @@ locals {
   envirronment_name_components = compact([var.environment_class, var.environment_group, var.logical_environment])
 
   resource_name = {
-    alicloud_vpc = join("-", compact(concat([var.apm_id, local.region_abbreviation], local.envirronment_name_components, [var.name.prefix, "vpc"])))
-    alicloud_vswitch = join("-", compact(concat([var.apm_id, local.region_abbreviation], local.envirronment_name_components, [var.name.prefix, "vsw"])))
+    alicloud_vpc = join("-", compact(concat([var.apm_id, local.region_abbreviation], local.envirronment_name_components, [var.name_prefix, "vpc"])))
+    alicloud_vswitch = join("-", compact(concat([var.apm_id, local.region_abbreviation], local.envirronment_name_components, [var.name_prefix, "vsw"])))
   }
 }
 
