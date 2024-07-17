@@ -54,3 +54,33 @@ module "naming_alicloud_vswitch"{
 #     source = "../ali_naming_convention"
 #     alicloud_resource_type = "alicloud_nat_gateway"
 # }
+
+resource "null_resource" "naming_parameter_validation" {
+  triggers = {
+    new_naming_convention = var.new_naming_convention
+    apm_id = var.apm_id
+    region = var.region
+    name_prefix = var.name_prefix
+    environment_class = var.environment_class
+    environment_group = var.environment_group
+    logical_environment = var.logical_environment
+    name = var.name
+  }
+  lifecycle {
+    precondition {
+      condition = (
+        (
+            (
+                (var.new_naming_convention == true) &&
+                (var.apm_id != "") &&
+                (var.region != "") &&
+                ((var.environment_class != "") || (var.environment_group != "") || (var.logical_environment != "")) &&
+                (var.name == "")
+            ) ||
+            ((var.new_naming_convention == false)&&(var.name_prefix == ""))
+        )
+      )
+      error_message = "Naming Validation failed"
+    }
+  }
+}
