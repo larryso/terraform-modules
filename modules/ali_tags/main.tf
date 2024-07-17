@@ -14,15 +14,15 @@ locals{
 
     final_tags = {for k,v in local.clean_tags: k=> k!= "DataPII" ? v: title(v)}
 
-    resulting_tags = local.tag_filter ? merge{
+    resulting_tags = local.tag_filter ? merge(
         local.final_tags,
         contains(keys(local.clean_module_tags), "TFComponent") ? {"TFComponent" = local.clean_module_tags.TFComponent} : {}
         contains(keys(local.clean_module_tags), "TFModulesVersion") ? {"TFModulesVersion" = local.clean_module_tags.TFModulesVersion} : {}
-    }: merge{
+    ): merge(
         var.tags.ExtraTags,
         var.tags.PipelineTags,
         var.local.final_tags,
         contains(keys(local.clean_module_tags), "TFComponent") ? {"TFComponent" = local.clean_module_tags.TFComponent} : {}
         contains(keys(local.clean_module_tags), "TFModulesVersion") ? {"TFModulesVersion" = local.clean_module_tags.TFModulesVersion} : {}
-    }
+    )
 }
