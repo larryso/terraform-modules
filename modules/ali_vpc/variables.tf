@@ -106,7 +106,7 @@ variable "nat_type" {
   default = "Enhanced"
 
   validation {
-    condition = contains("Normal", "Enhanced", var.nat_type)
+    condition = contains(["Normal", "Enhanced"], var.nat_type)
     error_message = "Valid nat_type values: Normal, Enahanced"
   }
 }
